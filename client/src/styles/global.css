@@ -1,0 +1,162 @@
+@theme {
+  --color-primary: #5B0E2D;
+  --color-primary-light: #7a1240;
+  --color-primary-dark: #3d0920;
+  --color-secondary: #C8A96A;
+  --color-secondary-light: #d9bf87;
+  --color-secondary-dark: #a8893a;
+
+  /* Dark theme defaults (used by all utility classes: bg-dark, text-light, etc.) */
+  --color-dark: #0A0A0A;
+  --color-dark-800: #111111;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #242424;
+  --color-dark-500: #333333;
+  --color-light: #F8F5F0;
+  --color-light-800: #EDE9E3;
+  --color-light-700: #E0DBD4;
+  --color-light-600: #CCC7BF;
+
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Light mode: swap the dark/light palette ───────────────
+   Tailwind v4 utility classes (bg-dark, text-light, etc.)
+   reference var(--color-*), so overriding the variables here
+   is enough to flip every component automatically.           */
+:root.light {
+  --color-dark: #F8F5F0;
+  --color-dark-800: #EDE9E3;
+  --color-dark-700: #E4DFD8;
+  --color-dark-600: #D5CEC5;
+  --color-dark-500: #BFB8AE;
+
+  --color-light: #111111;
+  --color-light-800: #2A2A2A;
+  --color-light-700: #444444;
+  --color-light-600: #666666;
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-dark-800); }
+::-webkit-scrollbar-thumb { background: #5B0E2D; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #C8A96A; }
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection { background: #5B0E2D; color: #F8F5F0; }
+
+/* ─── Typography helper ──────────────────────────────────────── */
+.font-display { font-family: var(--font-display) !important; }
+
+/* ─── Glass morphism ─────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root.light .glass {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-gold {
+  background: rgba(200, 169, 106, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 169, 106, 0.2);
+}
+
+/* ─── Text gradient (gold) ───────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #C8A96A 0%, #f0d48a 50%, #C8A96A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Card hover lift ────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(200, 169, 106, 0.15);
+}
+:root.light .card-hover:hover {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(200, 169, 106, 0.25);
+}
+
+/* ─── Image zoom on hover ────────────────────────────────────── */
+.img-zoom img,
+.img-zoom-inner {
+  transition: transform 0.6s var(--ease-smooth);
+}
+.img-zoom:hover img,
+.img-zoom:hover .img-zoom-inner {
+  transform: scale(1.06);
+}
+
+/* ─── Underline animation ────────────────────────────────────── */
+.underline-anim { position: relative; }
+.underline-anim::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C8A96A;
+  transition: width 0.35s var(--ease-smooth);
+}
+.underline-anim:hover::after { width: 100%; }
+
+/* ─── Scroll Progress Bar ────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #5B0E2D, #C8A96A);
+  z-index: 9999;
+  transform-origin: left;
+}
+
+/* ─── Light mode: borders that use white (Tailwind static) ──────
+   border-white/* classes generate static rgba values, not CSS
+   vars, so we override the common ones here.                   */
+:root.light .border-white\/5  { border-color: rgba(0, 0, 0, 0.06) !important; }
+:root.light .border-white\/10 { border-color: rgba(0, 0, 0, 0.09) !important; }
+:root.light .border-white\/15 { border-color: rgba(0, 0, 0, 0.12) !important; }
+:root.light .border-white\/20 { border-color: rgba(0, 0, 0, 0.14) !important; }
+:root.light .border-white\/30 { border-color: rgba(0, 0, 0, 0.18) !important; }
+
+/* bg-white/* used for subtle overlays */
+:root.light .bg-white\/5  { background-color: rgba(0, 0, 0, 0.03) !important; }
+:root.light .bg-white\/10 { background-color: rgba(0, 0, 0, 0.05) !important; }
+
+/* ─── Light mode: navbar blur background ─────────────────────── */
+:root.light .backdrop-blur-xl {
+  --tw-backdrop-blur: blur(24px);
+}
