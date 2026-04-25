@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { staggerItem } from '../../animations/staggerVariants'
 import Badge from '../ui/Badge'
 import { formatPrice } from '../../utils/formatters'
@@ -26,6 +27,7 @@ function StarRating({ rating }) {
 }
 
 export default function TourCard({ tour }) {
+  const { t } = useTranslation()
   const { title, category, badge, description, image, duration, groupSize, difficulty, price, originalPrice, rating, reviews, destinations } = tour
 
   return (
@@ -53,7 +55,7 @@ export default function TourCard({ tour }) {
             )}
             <span className="text-sm font-bold text-secondary">{formatPrice(price)}</span>
           </div>
-          <span className="text-xs text-light/40">per person</span>
+          <span className="text-xs text-light/40">{t('tourCard.perPerson')}</span>
         </div>
       </div>
 
@@ -67,9 +69,9 @@ export default function TourCard({ tour }) {
         {/* Meta */}
         <div className="grid grid-cols-3 gap-2 mb-4 py-3 border-y border-white/5">
           {[
-            { label: 'Duration', value: duration, icon: '🕐' },
-            { label: 'Group', value: groupSize, icon: '👥' },
-            { label: 'Level', value: difficulty, icon: '📊' },
+            { label: t('tourCard.duration'), value: duration, icon: '🕐' },
+            { label: t('tourCard.group'), value: groupSize, icon: '👥' },
+            { label: t('tourCard.level'), value: difficulty, icon: '📊' },
           ].map(({ label, value, icon }) => (
             <div key={label} className="text-center">
               <span className="text-base">{icon}</span>
@@ -98,7 +100,7 @@ export default function TourCard({ tour }) {
           to="/contact"
           className="mt-auto w-full inline-flex items-center justify-center gap-2 py-3 text-sm font-medium rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 hover:border-secondary/30 transition-all duration-200"
         >
-          Book This Tour
+          {t('tourCard.bookThisTour')}
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </Link>
       </div>

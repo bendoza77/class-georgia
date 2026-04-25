@@ -1,19 +1,12 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import Container from '../../components/layout/Container'
 import BookingWidget from '../../components/tourism/BookingWidget'
 import { staggerContainer, staggerItem } from '../../animations/staggerVariants'
 import { pageTransitionProps } from '../../animations/pageTransition'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
-
-const faqs = [
-  { q: 'How far in advance should I book?', a: 'We recommend booking at least 6–8 weeks in advance for peak season (June–September). However, we can sometimes accommodate last-minute requests.' },
-  { q: 'Are tours private or group-based?', a: 'All Class Georgia tours are private by default. We do not mix strangers. Your journey is entirely yours.' },
-  { q: 'What is included in the price?', a: 'Each tour has a detailed inclusions list. Typically: all accommodation, private transport, expert guides, and most meals.' },
-  { q: 'Do I need a visa to visit Georgia?', a: 'Citizens of 95+ countries can enter Georgia visa-free. We provide full pre-trip documentation support to all clients.' },
-  { q: 'Can you accommodate dietary requirements?', a: 'Absolutely. Georgian cuisine is naturally diverse. We customise every meal to your needs, whether vegan, gluten-free, or otherwise.' },
-]
 
 function FAQItem({ q, a }) {
   const [open, setOpen] = useState(false)
@@ -43,8 +36,20 @@ function FAQItem({ q, a }) {
 }
 
 export default function Contact() {
+  const { t } = useTranslation()
   useDocumentTitle('Contact & Book')
   const { ref, isInView } = useScrollAnimation()
+
+  const hero = t('contact.hero', { returnObjects: true })
+  const info = t('contact.info', { returnObjects: true })
+  const faqs = t('contact.faqs', { returnObjects: true })
+
+  const contactItems = [
+    { icon: '📞', label: info.phone, value: '+995 32 200 0000', href: 'tel:+995322000000' },
+    { icon: '✉️', label: info.email, value: 'info@classgeorgia.com', href: 'mailto:info@classgeorgia.com' },
+    { icon: '📍', label: info.address, value: info.addressValue, href: null },
+    { icon: '🕐', label: info.hours, value: info.hoursValue, href: null },
+  ]
 
   return (
     <motion.div {...pageTransitionProps} className="pt-20">
@@ -55,12 +60,12 @@ export default function Contact() {
         />
         <Container className="relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">Get in Touch</p>
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">{hero.eyebrow}</p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-light leading-tight mb-5">
-              Let's Plan<br />Your Journey
+              {hero.titleL1}<br />{hero.titleL2}
             </h1>
             <p className="text-base sm:text-lg text-light/50 leading-relaxed">
-              Whether you're ready to book or simply exploring, our team is here to answer every question and craft the perfect Georgian itinerary for you.
+              {hero.description}
             </p>
           </motion.div>
         </Container>
@@ -79,16 +84,11 @@ export default function Contact() {
               className="lg:col-span-2 space-y-8"
             >
               <motion.div variants={staggerItem}>
-                <h2 className="font-display text-3xl font-bold text-light mb-2">Contact Us</h2>
-                <p className="text-sm text-light/45">Our team is available Mon–Sun, 9am–9pm (Tbilisi time, UTC+4).</p>
+                <h2 className="font-display text-3xl font-bold text-light mb-2">{info.title}</h2>
+                <p className="text-sm text-light/45">{info.subtitle}</p>
               </motion.div>
 
-              {[
-                { icon: '📞', label: 'Phone', value: '+995 32 200 0000', href: 'tel:+995322000000' },
-                { icon: '✉️', label: 'Email', value: 'info@classgeorgia.com', href: 'mailto:info@classgeorgia.com' },
-                { icon: '📍', label: 'Address', value: '12 Rustaveli Avenue\nTbilisi 0108, Georgia', href: null },
-                { icon: '🕐', label: 'Hours', value: 'Mon–Sun: 9:00 – 21:00\n(UTC+4 Tbilisi Time)', href: null },
-              ].map(({ icon, label, value, href }) => (
+              {contactItems.map(({ icon, label, value, href }) => (
                 <motion.div key={label} variants={staggerItem} className="flex gap-4">
                   <div className="w-10 h-10 shrink-0 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-lg">
                     {icon}
@@ -108,7 +108,7 @@ export default function Contact() {
 
               {/* Social */}
               <motion.div variants={staggerItem}>
-                <p className="text-xs font-medium tracking-wider uppercase text-secondary mb-3">Follow Us</p>
+                <p className="text-xs font-medium tracking-wider uppercase text-secondary mb-3">{info.followUs}</p>
                 <div className="flex gap-3">
                   {['Facebook', 'Instagram', 'TikTok'].map((s) => (
                     <a key={s} href="#" className="px-4 py-2 text-xs font-medium border border-white/10 rounded-sm text-light/40 hover:text-secondary hover:border-secondary/30 transition-all duration-200">
@@ -127,8 +127,8 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3 bg-dark-700 border border-white/5 rounded-sm p-6 lg:p-8"
             >
-              <h3 className="font-display text-2xl font-bold text-light mb-1">Book a Tour</h3>
-              <p className="text-sm text-light/40 mb-6">Fill in the details below and we'll get back to you within 24 hours.</p>
+              <h3 className="font-display text-2xl font-bold text-light mb-1">{t('contact.bookTitle')}</h3>
+              <p className="text-sm text-light/40 mb-6">{t('contact.bookSubtitle')}</p>
               <BookingWidget />
             </motion.div>
           </div>
@@ -140,8 +140,8 @@ export default function Contact() {
         <img src="https://picsum.photos/seed/tbilisi-map/1920/600" alt="Tbilisi location" className="w-full h-full object-cover opacity-40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="glass rounded-sm px-8 py-5 text-center">
-            <p className="text-sm font-medium text-secondary mb-1">📍 Class Georgia</p>
-            <p className="text-xs text-light/50">12 Rustaveli Avenue, Tbilisi, Georgia</p>
+            <p className="text-sm font-medium text-secondary mb-1">📍 {t('contact.mapLabel')}</p>
+            <p className="text-xs text-light/50">{t('contact.mapAddress')}</p>
           </div>
         </div>
       </section>
@@ -150,11 +150,11 @@ export default function Contact() {
       <section className="py-20 lg:py-28 bg-dark">
         <Container narrow>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">FAQ</p>
-            <h2 className="font-display text-4xl font-bold text-light">Frequently Asked Questions</h2>
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">{t('contact.faqEyebrow')}</p>
+            <h2 className="font-display text-4xl font-bold text-light">{t('contact.faqTitle')}</h2>
           </motion.div>
           <div>
-            {faqs.map((faq) => <FAQItem key={faq.q} {...faq} />)}
+            {faqs.map((faq) => <FAQItem key={faq.q} q={faq.q} a={faq.a} />)}
           </div>
         </Container>
       </section>

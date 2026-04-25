@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import Container from '../../components/layout/Container'
 import TourCard from '../../components/tourism/TourCard'
@@ -9,20 +9,30 @@ import { tours } from '../../constants/toursData'
 import { staggerContainer } from '../../animations/staggerVariants'
 import { pageTransitionProps } from '../../animations/pageTransition'
 
-const categories = ['All', 'Signature', 'Adventure', 'Culinary', 'Cultural', 'Leisure']
-const difficulties = ['Any', 'Easy', 'Moderate', 'Challenging']
+const categoryKeys = ['All', 'Signature', 'Adventure', 'Culinary', 'Cultural', 'Leisure']
+const difficultyKeys = ['Any', 'Easy', 'Moderate', 'Challenging']
 
 export default function Tours() {
+  const { t } = useTranslation()
   useDocumentTitle('Tours')
   const [category, setCategory] = useState('All')
   const [difficulty, setDifficulty] = useState('Any')
   const [showBooking, setShowBooking] = useState(false)
 
-  const filtered = tours.filter((t) => {
-    const catOk = category === 'All' || t.category === category
-    const diffOk = difficulty === 'Any' || t.difficulty === difficulty
+  const tourTranslations = t('data.tours', { returnObjects: true })
+
+  const filtered = tours.filter((tour) => {
+    const catOk = category === 'All' || tour.category === category
+    const diffOk = difficulty === 'Any' || tour.difficulty === difficulty
     return catOk && diffOk
   })
+
+  const localizedFiltered = filtered.map((tour) => ({
+    ...tour,
+    ...tourTranslations[String(tour.id)],
+  }))
+
+  const count = localizedFiltered.length
 
   return (
     <motion.div {...pageTransitionProps} className="pt-20">
@@ -33,18 +43,18 @@ export default function Tours() {
         />
         <Container className="relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">Our Offerings</p>
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">{t('tours.eyebrow')}</p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-light leading-tight mb-5">
-              All Tours
+              {t('tours.title')}
             </h1>
             <p className="text-base sm:text-lg text-light/50 max-w-xl leading-relaxed mb-8">
-              From intimate wine explorations to epic mountain treks — there's a perfect Georgian journey for every traveller.
+              {t('tours.subtitle')}
             </p>
             <button
               onClick={() => setShowBooking(true)}
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 hover:border-secondary/30 font-medium text-sm tracking-wide transition-all duration-200"
             >
-              Enquire Now
+              {t('contact.hero.eyebrow')}
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>
           </motion.div>
@@ -56,7 +66,7 @@ export default function Tours() {
         <Container>
           <div className="flex flex-wrap gap-3 items-center">
             <div className="flex gap-2 overflow-x-auto">
-              {categories.map((c) => (
+              {categoryKeys.map((c) => (
                 <button
                   key={c}
                   onClick={() => setCategory(c)}
@@ -64,13 +74,13 @@ export default function Tours() {
                     category === c ? 'bg-primary text-secondary border border-secondary/30' : 'bg-dark-700 text-light/50 border border-white/5 hover:text-secondary hover:border-secondary/20'
                   }`}
                 >
-                  {c}
+                  {t(`tours.categories.${c}`)}
                 </button>
               ))}
             </div>
             <div className="h-4 w-px bg-white/10 hidden sm:block" />
             <div className="flex gap-2">
-              {difficulties.map((d) => (
+              {difficultyKeys.map((d) => (
                 <button
                   key={d}
                   onClick={() => setDifficulty(d)}
@@ -78,7 +88,7 @@ export default function Tours() {
                     difficulty === d ? 'bg-secondary/20 text-secondary border border-secondary/30' : 'text-light/40 border border-white/5 hover:text-secondary'
                   }`}
                 >
-                  {d}
+                  {t(`tours.difficulties.${d}`)}
                 </button>
               ))}
             </div>
@@ -90,7 +100,7 @@ export default function Tours() {
       <section className="py-16 lg:py-24 bg-dark">
         <Container>
           <p className="text-sm text-light/35 mb-8">
-            Showing <span className="text-secondary font-medium">{filtered.length}</span> tour{filtered.length !== 1 && 's'}
+            {t('tours.showing')} <span className="text-secondary font-medium">{count}</span> {count !== 1 ? t('tours.tours_plural') : t('tours.tour')}
           </p>
           <motion.div
             key={`${category}-${difficulty}`}
@@ -99,16 +109,16 @@ export default function Tours() {
             animate="visible"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {filtered.map((t) => (
-              <TourCard key={t.id} tour={t} />
+            {localizedFiltered.map((tour) => (
+              <TourCard key={tour.id} tour={tour} />
             ))}
           </motion.div>
 
-          {filtered.length === 0 && (
+          {localizedFiltered.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-light/30 text-lg">No tours match your filters.</p>
+              <p className="text-light/30 text-lg">{t('tours.noResults')}</p>
               <button onClick={() => { setCategory('All'); setDifficulty('Any') }} className="mt-4 text-sm text-secondary underline-anim">
-                Clear filters
+                {t('tours.clearFilters')}
               </button>
             </div>
           )}
@@ -127,7 +137,7 @@ export default function Tours() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display text-2xl font-bold text-light">Book a Tour</h3>
+              <h3 className="font-display text-2xl font-bold text-light">{t('tours.modalTitle')}</h3>
               <button onClick={() => setShowBooking(false)} className="w-8 h-8 flex items-center justify-center rounded-full border border-white/10 text-light/50 hover:text-secondary">
                 <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
               </button>

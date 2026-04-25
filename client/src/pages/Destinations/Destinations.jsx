@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import Container from '../../components/layout/Container'
 import SectionHeading from '../../components/shared/SectionHeading'
@@ -10,16 +11,25 @@ import { staggerContainer } from '../../animations/staggerVariants'
 import { pageTransitionProps } from '../../animations/pageTransition'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
-const regions = ['All', 'Capital City', 'Greater Caucasus', 'Adjara', 'Wine Country', 'Upper Svaneti', 'Kartli']
+const regionKeys = ['All', 'Capital City', 'Greater Caucasus', 'Adjara', 'Wine Country', 'Upper Svaneti', 'Kartli']
 
 export default function Destinations() {
+  const { t } = useTranslation()
   useDocumentTitle('Destinations')
   const [activeRegion, setActiveRegion] = useState('All')
   const { ref, isInView } = useScrollAnimation()
 
+  const destTranslations = t('data.destinations', { returnObjects: true })
+  const localizedDestinations = destinations.map((d) => ({
+    ...d,
+    ...destTranslations[String(d.id)],
+  }))
+
   const filtered = activeRegion === 'All'
-    ? destinations
-    : destinations.filter((d) => d.region === activeRegion)
+    ? localizedDestinations
+    : localizedDestinations.filter((d) => destinations.find(r => r.id === d.id)?.region === activeRegion)
+
+  const count = filtered.length
 
   return (
     <motion.div {...pageTransitionProps} className="pt-20">
@@ -34,12 +44,12 @@ export default function Destinations() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">Explore Georgia</p>
+            <p className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">{t('destinations.eyebrow')}</p>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-light leading-tight mb-5">
-              All Destinations
+              {t('destinations.title')}
             </h1>
             <p className="text-base sm:text-lg text-light/50 max-w-xl leading-relaxed">
-              From the capital's ancient streets to remote mountain villages — every corner of Georgia tells a story.
+              {t('destinations.subtitle')}
             </p>
           </motion.div>
         </Container>
@@ -54,7 +64,7 @@ export default function Destinations() {
             transition={{ delay: 0.3 }}
             className="flex gap-2 overflow-x-auto pb-1 scrollbar-none"
           >
-            {regions.map((r) => (
+            {regionKeys.map((r) => (
               <button
                 key={r}
                 onClick={() => setActiveRegion(r)}
@@ -64,7 +74,7 @@ export default function Destinations() {
                     : 'bg-dark-700 text-light/50 border border-white/5 hover:text-secondary hover:border-secondary/20'
                 }`}
               >
-                {r}
+                {t(`destinations.regions.${r}`)}
               </button>
             ))}
           </motion.div>
@@ -75,7 +85,7 @@ export default function Destinations() {
       <section className="py-16 lg:py-24 bg-dark">
         <Container>
           <p className="text-sm text-light/35 mb-8">
-            Showing <span className="text-secondary font-medium">{filtered.length}</span> destination{filtered.length !== 1 && 's'}
+            {t('destinations.showing')} <span className="text-secondary font-medium">{count}</span> {count !== 1 ? t('destinations.destinations') : t('destinations.destination')}
           </p>
           <motion.div
             ref={ref}
@@ -92,7 +102,7 @@ export default function Destinations() {
 
           {filtered.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-light/30 text-lg">No destinations found for this region.</p>
+              <p className="text-light/30 text-lg">{t('destinations.noResults')}</p>
             </div>
           )}
         </Container>
@@ -109,15 +119,15 @@ export default function Destinations() {
           >
             <div>
               <h3 className="font-display text-2xl font-bold text-light mb-1">
-                Can't choose? We'll choose for you.
+                {t('destinations.ctaTitle')}
               </h3>
-              <p className="text-sm text-light/45">Our experts craft the perfect multi-destination itinerary.</p>
+              <p className="text-sm text-light/45">{t('destinations.ctaSubtitle')}</p>
             </div>
             <Link
               to="/contact"
               className="shrink-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-sm bg-secondary hover:bg-secondary-light text-dark font-semibold text-sm transition-all duration-200"
             >
-              Get a Free Consultation
+              {t('destinations.ctaButton')}
             </Link>
           </motion.div>
         </Container>

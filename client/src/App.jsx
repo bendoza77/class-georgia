@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/shared/ScrollToTop'
+import AIChat from './components/shared/AIChat'
 import AppRoutes from './routes'
 
 export const ThemeContext = createContext({
@@ -27,13 +28,14 @@ export default function App() {
   return (
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
       <BrowserRouter>
-        <div className="min-h-screen bg-dark text-light overflow-x-hidden transition-colors duration-300">
+        <div className="min-h-screen flex flex-col bg-dark text-light overflow-x-hidden transition-colors duration-300">
           <Navbar />
-          <main>
+          <main className="flex-1">
             <AppRoutes />
           </main>
           <Footer />
           <ScrollToTop />
+          <AIChat />
         </div>
       </BrowserRouter>
     </ThemeContext.Provider>

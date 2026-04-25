@@ -1,6 +1,6 @@
 export const navLinks = [
-  { label: 'Destinations', path: '/destinations' },
-  { label: 'Tours', path: '/tours' },
-  { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
+  { key: 'destinations', path: '/destinations' },
+  { key: 'tours', path: '/tours' },
+  { key: 'about', path: '/about' },
+  { key: 'contact', path: '/contact' },
 ]

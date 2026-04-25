@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import logo from '../../assets/Screenshot_2026-04-24_190625-removebg-preview.png'
 import { navLinks } from '../../constants/navLinks'
 import { mobileMenuVariant, overlayVariant } from '../../animations/slideVariants'
 import { useLockBodyScroll } from '../../hooks/useLockBodyScroll'
 import Button from '../ui/Button'
+import LanguageSwitcher from '../shared/LanguageSwitcher'
 
 const itemVariant = {
   hidden: { opacity: 0, x: 30 },
@@ -17,6 +19,7 @@ const itemVariant = {
 
 export default function MobileMenu({ isOpen, onClose }) {
   const location = useLocation()
+  const { t } = useTranslation()
   useLockBodyScroll(isOpen)
 
   return (
@@ -41,15 +44,18 @@ export default function MobileMenu({ isOpen, onClose }) {
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-white/5">
           <img src={logo} alt="Class Georgia" className="h-10 w-auto object-contain" />
-          <button
-            onClick={onClose}
-            aria-label="Close menu"
-            className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-light/60 hover:text-secondary hover:border-secondary/40 transition-colors"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={onClose}
+              aria-label="Close menu"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-light/60 hover:text-secondary hover:border-secondary/40 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <ul className="flex flex-col px-6 pt-8 gap-1 flex-1">
@@ -64,7 +70,7 @@ export default function MobileMenu({ isOpen, onClose }) {
                     : 'text-light/80 hover:text-secondary'
                 }`}
               >
-                {link.label}
+                {t(`nav.${link.key}`)}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M4 8h8M8 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -75,10 +81,10 @@ export default function MobileMenu({ isOpen, onClose }) {
 
         <div className="px-6 pb-10 pt-6">
           <Button as={Link} to="/contact" onClick={onClose} fullWidth size="lg">
-            Book Your Journey
+            {t('mobileMenu.bookJourney')}
           </Button>
           <p className="mt-5 text-center text-xs text-light/30">
-            +995 32 200 0000 · info@classgeorgia.com
+            {t('mobileMenu.contact')}
           </p>
         </div>
       </motion.nav>

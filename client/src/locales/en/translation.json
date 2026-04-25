@@ -1,0 +1,639 @@
+{
+  "nav": {
+    "destinations": "Destinations",
+    "tours": "Tours",
+    "about": "About",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Award-Winning Luxury Travel",
+      "headlineL1": "Discover",
+      "headlineL2": "Georgia's",
+      "headlineL3": "Hidden Soul",
+      "description": "Immerse yourself in 3,000 years of culture, dramatic Caucasian landscapes, and the world's oldest wine tradition — expertly curated for the discerning traveller.",
+      "exploreTours": "Explore Tours",
+      "viewDestinations": "View Destinations",
+      "scroll": "Scroll"
+    },
+    "stats": {
+      "happyTravellers": "Happy Travellers",
+      "uniqueTours": "Unique Tours",
+      "yearsOfExcellence": "Years of Excellence",
+      "averageRating": "Average Rating"
+    },
+    "featuredDestinations": {
+      "eyebrow": "Where to Go",
+      "titleL1": "Featured",
+      "titleL2": "Destinations",
+      "subtitle": "Hand-picked regions offering extraordinary experiences for every kind of explorer.",
+      "allLink": "All destinations"
+    },
+    "featuredTours": {
+      "eyebrow": "Our Tours",
+      "titleL1": "Curated",
+      "titleL2": "Experiences",
+      "subtitle": "Meticulously designed itineraries combining culture, adventure, and pure luxury.",
+      "allLink": "All tours"
+    },
+    "experiences": {
+      "eyebrow": "How We Travel",
+      "title": "Ways to Experience Georgia",
+      "subtitle": "Every journey is tailored to your passions. Choose your adventure."
+    },
+    "gallery": {
+      "eyebrow": "Visual Journey",
+      "title": "Georgia Through Our Lens",
+      "subtitle": "A glimpse into the extraordinary landscapes and moments awaiting you."
+    },
+    "testimonials": {
+      "eyebrow": "Traveller Stories",
+      "title": "What Our Guests Say",
+      "items": {
+        "1": { "text": "Class Georgia transformed our honeymoon into the most magical week of our lives. The attention to detail, the private experiences, the sheer beauty of every location — absolutely flawless." },
+        "2": { "text": "As a wine professional, the Kakheti experience exceeded every expectation. Tasting qvevri wines in 2,000-year-old cellars is something I cannot find anywhere else on Earth." },
+        "3": { "text": "The mountain trek was breathtaking in every sense. Our guide's knowledge of Svaneti history made every stone tower feel alive. Already planning my return." }
+      }
+    },
+    "cta": {
+      "eyebrow": "Your Journey Awaits",
+      "titleL1": "Plan Your",
+      "titleItalic": "Perfect",
+      "titleSuffix": "Trip",
+      "description": "Let our travel experts craft a bespoke Georgian adventure tailored to your interests, pace, and budget.",
+      "startPlanning": "Start Planning",
+      "browseTours": "Browse Tours",
+      "freeConsultation": "Free Consultation",
+      "customItineraries": "Custom Itineraries",
+      "expertGuides": "Expert Local Guides",
+      "support": "24/7 Support"
+    },
+    "quickBooking": {
+      "eyebrow": "Book Your Tour",
+      "titleL1": "Ready to",
+      "titleL2": "Start Your Journey?",
+      "description": "Fill in the form and our team will reach out within 24 hours to finalise your bespoke Georgian adventure.",
+      "dedicatedSupport": "Dedicated Support",
+      "emailUs": "Email Us",
+      "visitUs": "Visit Us",
+      "phoneMeta": "+995 32 200 0000 · Mon–Sun 9–21h",
+      "emailMeta": "info@classgeorgia.com",
+      "addressMeta": "12 Rustaveli Ave, Tbilisi, Georgia"
+    }
+  },
+  "destinations": {
+    "eyebrow": "Explore Georgia",
+    "title": "All Destinations",
+    "subtitle": "From the capital's ancient streets to remote mountain villages — every corner of Georgia tells a story.",
+    "showing": "Showing",
+    "destination": "destination",
+    "destinations": "destinations",
+    "noResults": "No destinations found for this region.",
+    "ctaTitle": "Can't choose? We'll choose for you.",
+    "ctaSubtitle": "Our experts craft the perfect multi-destination itinerary.",
+    "ctaButton": "Get a Free Consultation",
+    "regions": {
+      "All": "All",
+      "Capital City": "Capital City",
+      "Greater Caucasus": "Greater Caucasus",
+      "Adjara": "Adjara",
+      "Wine Country": "Wine Country",
+      "Upper Svaneti": "Upper Svaneti",
+      "Kartli": "Kartli"
+    }
+  },
+  "tours": {
+    "eyebrow": "Our Offerings",
+    "title": "All Tours",
+    "subtitle": "From intimate wine explorations to epic mountain treks — there's a perfect Georgian journey for every traveller.",
+    "showing": "Showing",
+    "tour": "tour",
+    "tours_plural": "tours",
+    "noResults": "No tours match your filters.",
+    "clearFilters": "Clear filters",
+    "modalTitle": "Book a Tour",
+    "categories": {
+      "All": "All",
+      "Signature": "Signature",
+      "Adventure": "Adventure",
+      "Culinary": "Culinary",
+      "Cultural": "Cultural",
+      "Leisure": "Leisure"
+    },
+    "difficulties": {
+      "Any": "Any",
+      "Easy": "Easy",
+      "Moderate": "Moderate",
+      "Challenging": "Challenging"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Our Story",
+      "titleL1": "Passionate",
+      "titleL2": "About",
+      "titleGradient": "Georgia",
+      "description": "Founded in 2009 by a Tbilisi native, Class Georgia was born from a simple belief: that Georgia is one of the world's most extraordinary travel destinations, and that the world deserves to know it."
+    },
+    "story": {
+      "eyebrow": "Who We Are",
+      "titleL1": "Georgia's Premier",
+      "titleL2": "Luxury Travel Studio",
+      "p1": "We are a boutique travel agency headquartered in Tbilisi, dedicated entirely to one country: Georgia. This singular focus means our knowledge runs deep — from the back streets of the Old Town to the remotest Svaneti valleys.",
+      "p2": "Our team of 24 local experts includes former mountain guides, certified sommeliers, art historians, and culinary specialists — each passionate about sharing their homeland with the world.",
+      "p3": "Over 15 years, we've welcomed more than 10,000 travellers from 60+ countries, crafting journeys that consistently earn 5-star reviews and lifelong clients.",
+      "yearsLabel": "Years",
+      "travellersLabel": "Travellers",
+      "countriesLabel": "Countries",
+      "ratingLabel": "Rating",
+      "estBadge": "Est. in\nTbilisi"
+    },
+    "values": {
+      "eyebrow": "Our Philosophy",
+      "title": "What Drives Us",
+      "authentic": {
+        "title": "Authentic Experiences",
+        "desc": "We go beyond tourist trails to reveal the real Georgia — its people, traditions, and hidden landscapes."
+      },
+      "quality": {
+        "title": "Uncompromising Quality",
+        "desc": "Every hotel, guide, and activity is personally vetted to meet our exacting luxury standards."
+      },
+      "local": {
+        "title": "Local Partnership",
+        "desc": "We work exclusively with Georgian-owned businesses, ensuring your money benefits local communities."
+      },
+      "sustainable": {
+        "title": "Sustainable Travel",
+        "desc": "We minimise environmental impact and actively support conservation projects across Georgia."
+      }
+    },
+    "team": {
+      "eyebrow": "The People",
+      "title": "Meet Our Team",
+      "subtitle": "Passionate locals who live and breathe Georgia.",
+      "members": {
+        "nino": { "role": "Founder & CEO", "bio": "Born in Tbilisi, Nino has 20 years of experience crafting extraordinary journeys through her homeland." },
+        "giorgi": { "role": "Head of Experiences", "bio": "A former mountain guide turned luxury tour designer, Giorgi knows every trail and hidden village." },
+        "tamara": { "role": "Culinary & Wine Director", "bio": "Certified sommelier and food writer specialising in Georgian gastronomy and ancient winemaking." },
+        "davit": { "role": "Head Guide, Caucasus", "bio": "Mountaineer and cultural historian with 15 years leading expeditions through Kazbegi and Svaneti." }
+      }
+    },
+    "cta": {
+      "title": "Ready to Travel with Us?",
+      "subtitle": "Let's create your perfect Georgian adventure together.",
+      "viewTours": "View Tours",
+      "contactUs": "Contact Us"
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Get in Touch",
+      "titleL1": "Let's Plan",
+      "titleL2": "Your Journey",
+      "description": "Whether you're ready to book or simply exploring, our team is here to answer every question and craft the perfect Georgian itinerary for you."
+    },
+    "info": {
+      "title": "Contact Us",
+      "subtitle": "Our team is available Mon–Sun, 9am–9pm (Tbilisi time, UTC+4).",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "hours": "Hours",
+      "followUs": "Follow Us",
+      "addressValue": "12 Rustaveli Avenue\nTbilisi 0108, Georgia",
+      "hoursValue": "Mon–Sun: 9:00 – 21:00\n(UTC+4 Tbilisi Time)"
+    },
+    "bookTitle": "Book a Tour",
+    "bookSubtitle": "Fill in the details below and we'll get back to you within 24 hours.",
+    "mapLabel": "Class Georgia",
+    "mapAddress": "12 Rustaveli Avenue, Tbilisi, Georgia",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "How far in advance should I book?",
+        "a": "We recommend booking at least 6–8 weeks in advance for peak season (June–September). However, we can sometimes accommodate last-minute requests."
+      },
+      {
+        "q": "Are tours private or group-based?",
+        "a": "All Class Georgia tours are private by default. We do not mix strangers. Your journey is entirely yours."
+      },
+      {
+        "q": "What is included in the price?",
+        "a": "Each tour has a detailed inclusions list. Typically: all accommodation, private transport, expert guides, and most meals."
+      },
+      {
+        "q": "Do I need a visa to visit Georgia?",
+        "a": "Citizens of 95+ countries can enter Georgia visa-free. We provide full pre-trip documentation support to all clients."
+      },
+      {
+        "q": "Can you accommodate dietary requirements?",
+        "a": "Absolutely. Georgian cuisine is naturally diverse. We customise every meal to your needs, whether vegan, gluten-free, or otherwise."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Crafting extraordinary journeys through Georgia's ancient landscapes, vibrant cities, and timeless culture since 2009.",
+    "navTitle": "Navigation",
+    "bookATour": "Book a Tour",
+    "destinationsTitle": "Destinations",
+    "newsletterTitle": "Travel Insider",
+    "newsletterSubtitle": "Exclusive itineraries, seasonal offers, and travel inspiration delivered monthly.",
+    "emailPlaceholder": "your@email.com",
+    "subscribe": "Subscribe",
+    "subscribed": "Thank you for subscribing!",
+    "copyright": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "booking": {
+    "selectTour": "Select Tour",
+    "chooseTour": "Choose a tour…",
+    "departureDate": "Departure Date",
+    "guests": "Guests",
+    "guest": "guest",
+    "guestPlural": "guests",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "specialRequests": "Special Requests",
+    "namePlaceholder": "Your name",
+    "phonePlaceholder": "+1 234 567 8900",
+    "specialPlaceholder": "Dietary requirements, accessibility needs, special occasions…",
+    "requestBooking": "Request Booking",
+    "sending": "Sending Request…",
+    "successTitle": "Booking Request Sent!",
+    "successDesc": "Our travel experts will contact you within 24 hours to finalise your journey.",
+    "anotherEnquiry": "Make another enquiry",
+    "footer": "No payment required · Free cancellation · Expert support"
+  },
+  "tourCard": {
+    "duration": "Duration",
+    "group": "Group",
+    "level": "Level",
+    "bookThisTour": "Book This Tour",
+    "perPerson": "per person"
+  },
+  "destinationCard": {
+    "explorePrefix": "Explore"
+  },
+  "mobileMenu": {
+    "bookJourney": "Book Your Journey",
+    "contact": "+995 32 200 0000 · info@classgeorgia.com"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist. Let's get you back on track.",
+    "backHome": "Back to Home"
+  },
+  "ai": {
+    "buttonLabel": "AI Travel Assistant",
+    "title": "AI Travel Assistant",
+    "subtitle": "Ask me anything about Georgia",
+    "placeholder": "Ask about destinations, tours, visa…",
+    "send": "Send",
+    "thinking": "Thinking…",
+    "welcome": "Hello! I'm your AI Travel Assistant for Class Georgia. How can I help you plan your perfect Georgian adventure?",
+    "error": "Sorry, something went wrong. Please try again.",
+    "close": "Close chat",
+    "suggestedPrompts": ["Best time to visit Georgia?", "Tell me about Tbilisi", "Do I need a visa?", "Top wine experiences"]
+  },
+  "privacyPolicy": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title1": "Privacy",
+      "title2": "Policy",
+      "subtitle": "At Class Georgia, your privacy is as important to us as the quality of every journey we curate. This policy explains how we collect, use, and protect your personal information.",
+      "lastUpdated": "Last updated: April 2026"
+    },
+    "sections": [
+      {
+        "id": "information-we-collect",
+        "title": "Information We Collect",
+        "blocks": [
+          { "subtitle": "Information You Provide", "text": "When you enquire about or book a tour with Class Georgia, we collect personal details you voluntarily provide — including your full name, email address, phone number, passport information (where required for itinerary planning), dietary requirements, accessibility needs, and any special occasion details you share with us." },
+          { "subtitle": "Information Collected Automatically", "text": "When you visit our website, we automatically collect certain technical data: your IP address, browser type and version, the pages you visit and how long you spend on them, referring URLs, and device information. This data is collected through cookies and similar tracking technologies." },
+          { "subtitle": "Communications", "text": "If you contact us by email, phone, or through our website contact form, we retain records of those communications, including any content you share with us, to provide you with the highest quality service." }
+        ]
+      },
+      {
+        "id": "how-we-use",
+        "title": "How We Use Your Information",
+        "blocks": [
+          { "subtitle": "To Provide Our Services", "text": "We use your personal information primarily to plan, book, and deliver your bespoke Georgian travel experience. This includes communicating itinerary details, coordinating with our local guides and partners, arranging accommodation, and ensuring every aspect of your journey meets our luxury standards." },
+          { "subtitle": "To Improve Our Offering", "text": "Aggregated, anonymised data helps us understand how visitors use our website and which destinations or tours generate the most interest — allowing us to continuously refine and enhance the experiences we offer." },
+          { "subtitle": "Marketing Communications", "text": "With your explicit consent, we may send you curated travel inspiration, seasonal offers, and insider Georgia travel content. You can unsubscribe at any time via the link in any email we send, or by contacting us directly." }
+        ]
+      },
+      {
+        "id": "data-sharing",
+        "title": "How We Share Your Data",
+        "blocks": [
+          { "subtitle": "Trusted Partners", "text": "To deliver your travel experience, we share relevant personal details with our vetted Georgian partners — including boutique hotels, private guides, transport providers, and restaurant partners. These partners are contractually bound to use your data solely for delivering the specific service you have booked." },
+          { "subtitle": "We Never Sell Your Data", "text": "Class Georgia will never sell, rent, or trade your personal information to third parties for marketing or commercial purposes. Your data is treated with the same discretion and respect we extend to every aspect of our service." },
+          { "subtitle": "Legal Obligations", "text": "We may disclose your information if required by law, regulation, or legal process, or to protect the rights, property, or safety of Class Georgia, our clients, or the public." }
+        ]
+      },
+      {
+        "id": "data-retention",
+        "title": "Data Retention",
+        "blocks": [
+          { "subtitle": "How Long We Keep Your Data", "text": "We retain your personal information for as long as necessary to fulfil the purposes for which it was collected — typically for the duration of our business relationship plus seven years thereafter, in compliance with Georgian tax and accounting regulations." },
+          { "subtitle": "Deletion Requests", "text": "You may request deletion of your personal data at any time. We will honour such requests unless we are legally obligated to retain certain records. Please contact us at privacy@classgeorgia.com to make a deletion request." }
+        ]
+      },
+      {
+        "id": "your-rights",
+        "title": "Your Rights",
+        "blocks": [
+          { "subtitle": "Access and Portability", "text": "You have the right to request a copy of the personal data we hold about you, in a structured, commonly used, machine-readable format. We will respond to such requests within 30 days." },
+          { "subtitle": "Correction and Erasure", "text": "You have the right to request correction of inaccurate personal data or, in certain circumstances, erasure of your personal data. We will act on such requests promptly." },
+          { "subtitle": "Objection and Restriction", "text": "You have the right to object to certain processing of your personal data (including direct marketing) and to request that we restrict processing in certain circumstances." },
+          { "subtitle": "How to Exercise Your Rights", "text": "To exercise any of these rights, please contact our Privacy Team at privacy@classgeorgia.com or in writing to: Class Georgia, 12 Rustaveli Avenue, Tbilisi 0108, Georgia. We will respond within 30 days." }
+        ]
+      },
+      {
+        "id": "security",
+        "title": "Data Security",
+        "blocks": [
+          { "subtitle": "Our Commitment", "text": "We implement industry-standard technical and organisational security measures to protect your personal information against unauthorised access, disclosure, alteration, or destruction. All data transmission to and from our website is encrypted using SSL/TLS technology." },
+          { "subtitle": "Breach Notification", "text": "In the unlikely event of a data breach that poses a risk to your rights and freedoms, we will notify you and the relevant supervisory authorities in accordance with applicable data protection laws." }
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Changes to This Policy",
+        "blocks": [
+          { "subtitle": "Updates", "text": "We may update this Privacy Policy periodically to reflect changes in our practices, technology, legal requirements, or other factors. We will notify you of material changes by posting the updated policy on our website with a revised 'Last Updated' date. Your continued use of our services after any changes constitutes your acceptance of the updated policy." }
+        ]
+      }
+    ],
+    "cta": {
+      "eyebrow": "Questions?",
+      "title": "Contact Our Privacy Team",
+      "subtitle": "If you have any questions about this Privacy Policy or how we handle your personal data, please don't hesitate to reach out.",
+      "contactBtn": "Contact Us",
+      "emailBtn": "privacy@classgeorgia.com"
+    }
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title1": "Terms of",
+      "title2": "Service",
+      "subtitle": "These terms govern your use of Class Georgia's services. Please read them carefully before making a booking — they protect both you and us.",
+      "lastUpdated": "Last updated: April 2026"
+    },
+    "sections": [
+      {
+        "id": "acceptance",
+        "title": "Acceptance of Terms",
+        "blocks": [
+          { "subtitle": "Agreement", "text": "By accessing our website or enquiring about, booking, or participating in any tour or service offered by Class Georgia LLC, you confirm that you have read, understood, and agree to be bound by these Terms of Service. If you are booking on behalf of others, you confirm that you have the authority to accept these terms on their behalf." },
+          { "subtitle": "Amendments", "text": "We reserve the right to amend these Terms at any time. Material changes will be communicated via our website or directly to clients with active bookings. Continued use of our services following any changes constitutes acceptance of the updated Terms." }
+        ]
+      },
+      {
+        "id": "services",
+        "title": "Our Services",
+        "blocks": [
+          { "subtitle": "What We Offer", "text": "Class Georgia provides bespoke, private travel services within Georgia, including itinerary design, accommodation booking, private guiding, transport coordination, culinary experiences, and related concierge services. All tours are private — we do not operate group tours that combine unacquainted travellers." },
+          { "subtitle": "Service Standards", "text": "We take every reasonable measure to ensure that the services and suppliers we engage meet our luxury standards. However, we act as an agent arranging services provided by independent third parties and cannot accept liability for acts or omissions of those third parties beyond our reasonable control." },
+          { "subtitle": "Accuracy of Information", "text": "We strive to ensure all information on our website and in our communications is accurate and up to date. However, descriptions of destinations, experiences, and pricing are subject to change. We will notify you of any material changes affecting your confirmed booking." }
+        ]
+      },
+      {
+        "id": "bookings",
+        "title": "Bookings & Payment",
+        "blocks": [
+          { "subtitle": "Booking Confirmation", "text": "A booking is confirmed only upon receipt of a written confirmation from Class Georgia and payment of the required deposit. Verbal or informal communications do not constitute a confirmed booking." },
+          { "subtitle": "Deposit", "text": "A non-refundable deposit of 30% of the total tour price is required to confirm your booking. The deposit amount will be credited in full towards the total cost of your journey." },
+          { "subtitle": "Balance Payment", "text": "The remaining balance is due 60 days prior to your tour start date. For bookings made within 60 days of departure, full payment is required at the time of booking." },
+          { "subtitle": "Accepted Payment Methods", "text": "We accept payment by international bank transfer and major credit/debit cards. All prices are quoted in USD unless otherwise specified. Bank transfer charges are the responsibility of the client." }
+        ]
+      },
+      {
+        "id": "cancellation",
+        "title": "Cancellation & Amendments",
+        "blocks": [
+          { "subtitle": "Cancellation by Client", "text": "All cancellations must be submitted in writing to info@classgeorgia.com. Cancellation charges apply as follows: more than 90 days before departure — deposit only; 60–89 days — 50% of total price; 30–59 days — 75% of total price; fewer than 30 days — 100% of total price." },
+          { "subtitle": "Amendments by Client", "text": "We will do our best to accommodate amendment requests. Amendments made within 30 days of departure may incur additional charges. Significant changes may be treated as a cancellation and rebooking." },
+          { "subtitle": "Cancellation by Class Georgia", "text": "In the rare event that we must cancel your tour due to force majeure, we will offer you a full credit note valid for 24 months or a refund of all monies paid, minus any unrecoverable third-party costs." },
+          { "subtitle": "Travel Insurance", "text": "We strongly recommend that all clients purchase comprehensive travel insurance covering cancellation, curtailment, medical emergencies, and evacuation prior to confirming their booking." }
+        ]
+      },
+      {
+        "id": "liability",
+        "title": "Liability",
+        "blocks": [
+          { "subtitle": "Limitation of Liability", "text": "Class Georgia's total liability to you in connection with any booking shall not exceed the total price paid by you for that booking. We shall not be liable for any indirect, consequential, or special losses, including loss of enjoyment or business, howsoever caused." },
+          { "subtitle": "Health & Fitness", "text": "You are responsible for ensuring that you and all members of your party are in suitable health and physical condition for the activities selected. We reserve the right to exclude any participant from an activity we reasonably consider to be unsafe for them." },
+          { "subtitle": "Local Conditions", "text": "Georgia is a mountainous country with varied terrain and infrastructure. While we take all reasonable precautions, travel to remote regions inherently carries certain risks. By booking with us, you acknowledge and accept the nature of adventure travel." }
+        ]
+      },
+      {
+        "id": "governing-law",
+        "title": "Governing Law",
+        "blocks": [
+          { "subtitle": "Jurisdiction", "text": "These Terms of Service are governed by and construed in accordance with the laws of Georgia (the country). Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts of Tbilisi, Georgia." },
+          { "subtitle": "Severability", "text": "If any provision of these Terms is found to be invalid or unenforceable by a court of competent jurisdiction, the remaining provisions shall continue in full force and effect." }
+        ]
+      }
+    ],
+    "cancellationCards": [
+      { "label": "90+ days", "detail": "Deposit only" },
+      { "label": "60–89 days", "detail": "50% charge" },
+      { "label": "30–59 days", "detail": "75% charge" },
+      { "label": "Under 30", "detail": "100% charge" }
+    ],
+    "cta": {
+      "eyebrow": "Need Clarification?",
+      "title": "Speak to Our Team",
+      "subtitle": "If you have any questions about our Terms of Service before or after making a booking, our team is happy to help.",
+      "contactBtn": "Get in Touch",
+      "emailBtn": "info@classgeorgia.com"
+    }
+  },
+  "cookies": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title1": "Cookie",
+      "title2": "Policy",
+      "subtitle": "We believe in transparency. This policy explains exactly which cookies we use, why we use them, and how you can manage your preferences.",
+      "lastUpdated": "Last updated: April 2026"
+    },
+    "typesEyebrow": "Cookie Types",
+    "typesTitle": "Cookies We Use",
+    "required": "Required",
+    "optional": "Optional",
+    "examples": "Examples",
+    "cookieTypes": [
+      {
+        "name": "Strictly Necessary",
+        "required": true,
+        "description": "These cookies are essential for the website to function. They enable core functionality such as security, network management, and session handling. You cannot opt out of these cookies as the site cannot function without them.",
+        "examples": ["Session management", "Security tokens", "Form submission state"]
+      },
+      {
+        "name": "Functional",
+        "required": false,
+        "description": "These cookies allow the website to remember choices you make (such as your preferred language or region) and provide enhanced, more personal features. Without these cookies, some features may not work correctly.",
+        "examples": ["Language preference (EN/KA)", "Theme preference (dark/light)", "Recently viewed destinations"]
+      },
+      {
+        "name": "Analytics",
+        "required": false,
+        "description": "We use analytics cookies to understand how visitors interact with our website. This helps us identify which pages are most popular, where visitors come from, and how they navigate through the site.",
+        "examples": ["Page view counts", "Session duration", "Traffic sources", "Device type"]
+      },
+      {
+        "name": "Marketing",
+        "required": false,
+        "description": "Marketing cookies are used to track visitors across websites to display advertisements that are relevant and engaging. These are only set with your explicit consent.",
+        "examples": ["Retargeting ads", "Social media pixels", "Conversion tracking"]
+      }
+    ],
+    "sections": [
+      { "id": "what-are-cookies", "title": "What Are Cookies?", "content": "Cookies are small text files placed on your device when you visit a website. They are widely used to make websites work more efficiently and to provide information to website owners. Cookies do not contain personally identifiable information on their own — they simply hold a small amount of data relevant to your visit." },
+      { "id": "how-we-use", "title": "How We Use Cookies", "content": "Class Georgia uses cookies to enhance your experience on our website, to understand how you use our site so we can improve it, and — with your consent — to personalise the content and advertisements you may see. We only use data from cookies in aggregate or anonymised form for analytics purposes, and we never sell cookie data to third parties." },
+      { "id": "third-party", "title": "Third-Party Cookies", "content": "Some cookies on our site are placed by third-party services that appear on our pages. These include analytics providers (such as Google Analytics) and social media platforms. These third parties have their own privacy policies, which we encourage you to review. We only enable third-party analytics and marketing cookies with your explicit consent." },
+      { "id": "managing", "title": "Managing Cookies", "content": "You can control and manage cookies in several ways. You can adjust your browser settings to refuse cookies from all or specific websites. You can delete cookies that have already been stored on your device. You can use our cookie preference panel to update your consent at any time. Please note that restricting cookies may impact the functionality of our website." },
+      { "id": "retention", "title": "Cookie Retention Periods", "content": "Different cookies persist for different lengths of time. Session cookies are temporary and expire when you close your browser. Persistent cookies remain on your device for a set period — typically between 30 days and 2 years depending on their purpose. Analytics cookies are typically retained for 13 months." }
+    ],
+    "browserTitle": "Browser Cookie Settings",
+    "browserSubtitle": "Most browsers allow you to manage cookie settings. Find your browser's instructions below:",
+    "browsers": [
+      { "name": "Google Chrome", "url": "https://support.google.com/chrome/answer/95647" },
+      { "name": "Mozilla Firefox", "url": "https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" },
+      { "name": "Safari", "url": "https://support.apple.com/guide/safari/manage-cookies-sfri11471" },
+      { "name": "Microsoft Edge", "url": "https://support.microsoft.com/microsoft-edge/delete-cookies-in-microsoft-edge-63947406" }
+    ],
+    "cta": {
+      "eyebrow": "Questions?",
+      "title": "We're Here to Help",
+      "subtitle": "If you have any questions about our use of cookies or how to manage your preferences, please don't hesitate to contact us.",
+      "contactBtn": "Contact Us",
+      "privacyBtn": "Read Privacy Policy"
+    }
+  },
+  "data": {
+    "destinations": {
+      "1": {
+        "name": "Tbilisi",
+        "region": "Capital City",
+        "tagline": "Where East Meets West",
+        "description": "A city of ancient sulfur baths, colourful balconied houses, and a thriving arts scene set in a dramatic river gorge.",
+        "highlights": ["Old Town", "Narikala Fortress", "Sulfur Baths", "Rustaveli Ave"],
+        "duration": "2–3 days",
+        "bestTime": "Apr – Jun, Sep – Oct"
+      },
+      "2": {
+        "name": "Kazbegi",
+        "region": "Greater Caucasus",
+        "tagline": "Roof of the Caucasus",
+        "description": "Majestic alpine scenery crowned by the legendary Gergeti Trinity Church perched above dramatic Caucasian peaks.",
+        "highlights": ["Gergeti Trinity Church", "Mt. Kazbek", "Truso Valley", "Sno Valley"],
+        "duration": "2–4 days",
+        "bestTime": "Jun – Sep"
+      },
+      "3": {
+        "name": "Batumi",
+        "region": "Adjara",
+        "tagline": "Pearl of the Black Sea",
+        "description": "A vibrant resort city blending belle-époque architecture with modern skyscrapers along a lush subtropical coast.",
+        "highlights": ["Boulevard", "Botanical Garden", "Old Town", "Alphabet Tower"],
+        "duration": "2–3 days",
+        "bestTime": "Jun – Sep"
+      },
+      "4": {
+        "name": "Kakheti",
+        "region": "Wine Country",
+        "tagline": "Cradle of Wine",
+        "description": "Georgia's premier wine region, home to 8,000 years of winemaking tradition, ancient monasteries, and rolling vineyards.",
+        "highlights": ["Sighnaghi", "Bodbe Monastery", "Wine Caves", "Alazani Valley"],
+        "duration": "2–3 days",
+        "bestTime": "Sep – Oct (harvest)"
+      },
+      "5": {
+        "name": "Svaneti",
+        "region": "Upper Svaneti",
+        "tagline": "Land of the Towers",
+        "description": "A UNESCO World Heritage landscape of medieval stone towers, glaciers, and villages untouched by time.",
+        "highlights": ["Mestia", "Ushguli Village", "Koruldi Lakes", "Glacier Hiking"],
+        "duration": "3–5 days",
+        "bestTime": "Jun – Sep"
+      },
+      "6": {
+        "name": "Mtskheta",
+        "region": "Kartli",
+        "tagline": "Ancient Capital",
+        "description": "The spiritual heart of Georgia, where two rivers meet beneath centuries-old cathedrals and monasteries.",
+        "highlights": ["Svetitskhoveli Cathedral", "Jvari Monastery", "Shiomgvime", "Samtavro"],
+        "duration": "1 day",
+        "bestTime": "Year-round"
+      }
+    },
+    "tours": {
+      "1": {
+        "title": "Ultimate Georgia Discovery",
+        "category": "Signature",
+        "badge": "Best Seller",
+        "description": "Our flagship 10-day journey through Georgia's most iconic landscapes, cities, and cultural treasures.",
+        "difficulty": "Moderate",
+        "includes": ["All accommodation", "Private transport", "Expert guide", "Most meals"]
+      },
+      "2": {
+        "title": "Caucasus Mountain Trek",
+        "category": "Adventure",
+        "badge": "New",
+        "description": "A thrilling high-altitude adventure through Kazbegi and Svaneti, with glacier hikes and mountain village stays.",
+        "difficulty": "Challenging",
+        "includes": ["Mountain lodge stays", "Trekking gear", "Expert guide", "All meals"]
+      },
+      "3": {
+        "title": "Wine & Culture Journey",
+        "category": "Culinary",
+        "badge": "Popular",
+        "description": "Immerse yourself in 8,000 years of winemaking tradition across Kakheti's amber valleys.",
+        "difficulty": "Easy",
+        "includes": ["Boutique hotel", "Wine tastings", "Cellar tours", "Georgian feasts"]
+      },
+      "4": {
+        "title": "Tbilisi Deep Dive",
+        "category": "Cultural",
+        "badge": "",
+        "description": "Explore the layered history, art, and gastronomy of Georgia's extraordinary capital with a local insider.",
+        "difficulty": "Easy",
+        "includes": ["Boutique hotel", "City tours", "Food walks", "Museum entry"]
+      },
+      "5": {
+        "title": "Black Sea & Batumi Escape",
+        "category": "Leisure",
+        "badge": "",
+        "description": "A sophisticated coastal retreat combining Batumi's vibrant city life with Adjaran nature excursions.",
+        "difficulty": "Easy",
+        "includes": ["Sea-view hotel", "City tour", "Botanical Garden", "Speed boat trip"]
+      },
+      "6": {
+        "title": "Svaneti & UNESCO Heritage",
+        "category": "Adventure",
+        "badge": "",
+        "description": "Journey to one of Europe's most remote and magnificent highland regions, home to ancient defensive towers.",
+        "difficulty": "Moderate",
+        "includes": ["Guesthouse stays", "Local guide", "4x4 transfers", "Most meals"]
+      }
+    },
+    "experiences": {
+      "1": { "title": "Wine Tasting", "description": "Discover 8,000 years of winemaking tradition in ancient qvevri cellars." },
+      "2": { "title": "Mountain Hiking", "description": "Trek through dramatic Caucasian peaks and glacial valleys." },
+      "3": { "title": "Historic Sites", "description": "Walk through 3,000 years of history at UNESCO World Heritage sites." },
+      "4": { "title": "Culinary Tours", "description": "Savour khinkali, khachapuri, and regional delicacies at their source." },
+      "5": { "title": "Village Life", "description": "Immerse in authentic hospitality with traditional Georgian families." },
+      "6": { "title": "Cultural Shows", "description": "Experience polyphonic singing, traditional dance, and folk art." }
+    }
+  }
+}

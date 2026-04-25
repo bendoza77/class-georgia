@@ -41,6 +41,34 @@
   --color-light-600: #666666;
 }
 
+/* ─── AI chat panel always uses dark-mode palette ───────────────
+   The panel has a hardcoded dark background so its text variables
+   must stay pinned to dark-mode values in light mode too.        */
+.ai-panel {
+  --color-light:     #F8F5F0;
+  --color-light-800: #EDE9E3;
+  --color-light-700: #E0DBD4;
+  --color-light-600: #CCC7BF;
+  --color-dark:      #0A0A0A;
+  --color-dark-800:  #111111;
+  --color-dark-700:  #1a1a1a;
+  --color-dark-600:  #242424;
+  --color-dark-500:  #333333;
+}
+
+/* ─── Primary backgrounds always use white text (both themes) ──
+   Light mode sets --color-light to #111111, which makes text-light
+   dark on burgundy backgrounds. Re-pin the variable to white here
+   so any text-light/* inside bg-primary stays readable.          */
+.bg-primary,
+.bg-primary-light,
+.bg-primary-dark {
+  --color-light:     #F8F5F0;
+  --color-light-800: #EDE9E3;
+  --color-light-700: #E0DBD4;
+  --color-light-600: #CCC7BF;
+}
+
 /* ─── Base ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 

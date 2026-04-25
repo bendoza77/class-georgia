@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import logo from '../../assets/Screenshot_2026-04-24_190625-removebg-preview.png'
 import Container from './Container'
 import { navLinks } from '../../constants/navLinks'
-import { useState } from 'react'
 
 const destinations = ['Tbilisi', 'Kazbegi', 'Batumi', 'Kakheti', 'Svaneti', 'Mtskheta']
 
@@ -25,6 +26,7 @@ function SocialIcon({ href, children }) {
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const { t } = useTranslation()
 
   const handleSubscribe = (e) => {
     e.preventDefault()
@@ -38,15 +40,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="inline-flex mb-4">
-              <img
-                src={logo}
-                alt="Class Georgia"
-                className="h-16 w-auto object-contain"
-              />
+              <img src={logo} alt="Class Georgia" className="h-16 w-auto object-contain" />
             </Link>
-            <p className="text-sm text-light/40 leading-relaxed mb-6">
-              Crafting extraordinary journeys through Georgia's ancient landscapes, vibrant cities, and timeless culture since 2009.
-            </p>
+            <p className="text-sm text-light/40 leading-relaxed mb-6">{t('footer.tagline')}</p>
             <div className="flex gap-3">
               <SocialIcon href="#">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -63,22 +59,19 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-5">
-              Navigation
+              {t('footer.navTitle')}
             </h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-sm text-light/50 hover:text-secondary transition-colors duration-200 underline-anim"
-                  >
-                    {link.label}
+                  <Link to={link.path} className="text-sm text-light/50 hover:text-secondary transition-colors duration-200 underline-anim">
+                    {t(`nav.${link.key}`)}
                   </Link>
                 </li>
               ))}
               <li>
                 <Link to="/contact" className="text-sm text-light/50 hover:text-secondary transition-colors duration-200 underline-anim">
-                  Book a Tour
+                  {t('footer.bookATour')}
                 </Link>
               </li>
             </ul>
@@ -87,15 +80,12 @@ export default function Footer() {
           {/* Destinations */}
           <div>
             <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-5">
-              Destinations
+              {t('footer.destinationsTitle')}
             </h4>
             <ul className="space-y-3">
               {destinations.map((d) => (
                 <li key={d}>
-                  <Link
-                    to="/destinations"
-                    className="text-sm text-light/50 hover:text-secondary transition-colors duration-200 underline-anim"
-                  >
+                  <Link to="/destinations" className="text-sm text-light/50 hover:text-secondary transition-colors duration-200 underline-anim">
                     {d}
                   </Link>
                 </li>
@@ -106,40 +96,32 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h4 className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-5">
-              Travel Insider
+              {t('footer.newsletterTitle')}
             </h4>
-            <p className="text-sm text-light/40 leading-relaxed mb-5">
-              Exclusive itineraries, seasonal offers, and travel inspiration delivered monthly.
-            </p>
+            <p className="text-sm text-light/40 leading-relaxed mb-5">{t('footer.newsletterSubtitle')}</p>
             {subscribed ? (
-              <p className="text-sm text-secondary font-medium">Thank you for subscribing!</p>
+              <p className="text-sm text-secondary font-medium">{t('footer.subscribed')}</p>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
+                  placeholder={t('footer.emailPlaceholder')}
                   className="w-full bg-dark-700 border border-white/10 rounded-sm px-4 py-2.5 text-sm text-light placeholder:text-light/30 focus:outline-none focus:border-secondary/50 transition-colors"
                 />
                 <button
                   type="submit"
                   className="w-full py-2.5 px-4 text-sm font-medium tracking-wide rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 transition-all duration-200"
                 >
-                  Subscribe
+                  {t('footer.subscribe')}
                 </button>
               </form>
             )}
             <div className="mt-6 space-y-2">
-              <p className="text-xs text-light/30 flex items-center gap-2">
-                <span>📞</span> +995 32 200 0000
-              </p>
-              <p className="text-xs text-light/30 flex items-center gap-2">
-                <span>✉️</span> info@classgeorgia.com
-              </p>
-              <p className="text-xs text-light/30 flex items-center gap-2">
-                <span>📍</span> 12 Rustaveli Ave, Tbilisi
-              </p>
+              <p className="text-xs text-light/30 flex items-center gap-2"><span>📞</span> +995 32 200 0000</p>
+              <p className="text-xs text-light/30 flex items-center gap-2"><span>✉️</span> info@classgeorgia.com</p>
+              <p className="text-xs text-light/30 flex items-center gap-2"><span>📍</span> 12 Rustaveli Ave, Tbilisi</p>
             </div>
           </div>
         </div>
@@ -149,13 +131,17 @@ export default function Footer() {
         <Container>
           <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-xs text-light/25">
-              © {new Date().getFullYear()} Class Georgia. All rights reserved.
+              © {new Date().getFullYear()} Class Georgia. {t('footer.copyright')}
             </p>
             <div className="flex gap-5">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((t) => (
-                <a key={t} href="#" className="text-xs text-light/25 hover:text-secondary transition-colors duration-200">
-                  {t}
-                </a>
+              {[
+                { key: 'privacyPolicy', label: t('footer.privacyPolicy'), to: '/privacy-policy' },
+                { key: 'terms', label: t('footer.terms'), to: '/terms' },
+                { key: 'cookies', label: t('footer.cookies'), to: '/cookies' },
+              ].map((item) => (
+                <Link key={item.key} to={item.to} className="text-xs text-light/25 hover:text-secondary transition-colors duration-200">
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>

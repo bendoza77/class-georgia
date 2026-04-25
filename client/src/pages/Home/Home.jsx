@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import Container from '../../components/layout/Container'
 import SectionHeading from '../../components/shared/SectionHeading'
 import DestinationCard from '../../components/tourism/DestinationCard'
@@ -12,7 +13,6 @@ import BookingWidget from '../../components/tourism/BookingWidget'
 import { destinations } from '../../constants/destinationsData'
 import { tours, experiences } from '../../constants/toursData'
 import { staggerContainer, staggerItem, counterVariant } from '../../animations/staggerVariants'
-import { fadeInUp, fadeIn } from '../../animations/fadeVariants'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 import { pageTransitionProps } from '../../animations/pageTransition'
 
@@ -24,6 +24,7 @@ const heroImages = [
 ]
 
 function HeroSection() {
+  const { t } = useTranslation()
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, 180])
@@ -73,7 +74,7 @@ function HeroSection() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
               <span className="text-xs font-medium text-secondary tracking-[0.18em] uppercase">
-                Award-Winning Luxury Travel
+                {t('home.hero.eyebrow')}
               </span>
             </motion.div>
 
@@ -84,11 +85,11 @@ function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-light leading-[1.05] mb-6"
             >
-              Discover
+              {t('home.hero.headlineL1')}
               <br />
-              <em className="italic text-gradient not-italic">Georgia's</em>
+              <em className="italic text-gradient not-italic">{t('home.hero.headlineL2')}</em>
               <br />
-              Hidden Soul
+              {t('home.hero.headlineL3')}
             </motion.h1>
 
             <motion.p
@@ -97,7 +98,7 @@ function HeroSection() {
               transition={{ duration: 0.7, delay: 0.6 }}
               className="text-base sm:text-lg text-light/60 max-w-lg leading-relaxed mb-10"
             >
-              Immerse yourself in 3,000 years of culture, dramatic Caucasian landscapes, and the world's oldest wine tradition — expertly curated for the discerning traveller.
+              {t('home.hero.description')}
             </motion.p>
 
             {/* CTAs */}
@@ -112,7 +113,7 @@ function HeroSection() {
                   to="/tours"
                   className="inline-flex items-center gap-2.5 px-8 py-4 rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 hover:border-secondary/30 font-medium tracking-wide text-sm transition-all duration-300"
                 >
-                  Explore Tours
+                  {t('home.hero.exploreTours')}
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </Link>
               </motion.div>
@@ -121,7 +122,7 @@ function HeroSection() {
                   to="/destinations"
                   className="inline-flex items-center gap-2.5 px-8 py-4 rounded-sm border border-white/20 text-light hover:border-secondary/50 hover:text-secondary font-medium tracking-wide text-sm backdrop-blur-sm transition-all duration-300"
                 >
-                  View Destinations
+                  {t('home.hero.viewDestinations')}
                 </Link>
               </motion.div>
             </motion.div>
@@ -136,7 +137,7 @@ function HeroSection() {
         transition={{ delay: 1.2, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-light/30 tracking-[0.2em] uppercase">Scroll</span>
+        <span className="text-xs text-light/30 tracking-[0.2em] uppercase">{t('home.hero.scroll')}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -159,13 +160,6 @@ function HeroSection() {
 }
 
 /* ─── Stats ─────────────────────────────────────────────── */
-const stats = [
-  { value: 10000, suffix: '+', label: 'Happy Travellers', icon: '😊' },
-  { value: 50, suffix: '+', label: 'Unique Tours', icon: '🗺️' },
-  { value: 15, suffix: '+', label: 'Years of Excellence', icon: '⭐' },
-  { value: 4.9, suffix: '', label: 'Average Rating', icon: '🏆' },
-]
-
 function Counter({ target, suffix }) {
   const [count, setCount] = useState(0)
   const { ref, isInView } = useScrollAnimation()
@@ -193,7 +187,14 @@ function Counter({ target, suffix }) {
 }
 
 function StatsSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const stats = [
+    { value: 10000, suffix: '+', label: t('home.stats.happyTravellers'), icon: '😊' },
+    { value: 50, suffix: '+', label: t('home.stats.uniqueTours'), icon: '🗺️' },
+    { value: 15, suffix: '+', label: t('home.stats.yearsOfExcellence'), icon: '⭐' },
+    { value: 4.9, suffix: '', label: t('home.stats.averageRating'), icon: '🏆' },
+  ]
 
   return (
     <section className="py-16 bg-dark-800 border-y border-white/5">
@@ -224,17 +225,24 @@ function StatsSection() {
 
 /* ─── Destinations ──────────────────────────────────────── */
 function DestinationsSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
   const featured = destinations.filter((d) => d.featured)
+
+  const destTranslations = t('data.destinations', { returnObjects: true })
+  const localizedFeatured = featured.map((d) => ({
+    ...d,
+    ...destTranslations[String(d.id)],
+  }))
 
   return (
     <section className="py-20 lg:py-28 bg-dark">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <SectionHeading
-            eyebrow="Where to Go"
-            title={<>Featured<br />Destinations</>}
-            subtitle="Hand-picked regions offering extraordinary experiences for every kind of explorer."
+            eyebrow={t('home.featuredDestinations.eyebrow')}
+            title={<>{t('home.featuredDestinations.titleL1')}<br />{t('home.featuredDestinations.titleL2')}</>}
+            subtitle={t('home.featuredDestinations.subtitle')}
           />
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -246,7 +254,7 @@ function DestinationsSection() {
               to="/destinations"
               className="inline-flex items-center gap-2 text-sm text-secondary underline-anim font-medium shrink-0"
             >
-              All destinations
+              {t('home.featuredDestinations.allLink')}
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </motion.div>
@@ -259,7 +267,7 @@ function DestinationsSection() {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {featured.map((d) => (
+          {localizedFeatured.map((d) => (
             <DestinationCard key={d.id} destination={d} />
           ))}
         </motion.div>
@@ -270,17 +278,24 @@ function DestinationsSection() {
 
 /* ─── Tours ─────────────────────────────────────────────── */
 function ToursSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
   const featured = tours.filter((t) => t.featured)
+
+  const tourTranslations = t('data.tours', { returnObjects: true })
+  const localizedFeatured = featured.map((tour) => ({
+    ...tour,
+    ...tourTranslations[String(tour.id)],
+  }))
 
   return (
     <section className="py-20 lg:py-28 bg-dark-800">
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <SectionHeading
-            eyebrow="Our Tours"
-            title={<>Curated<br />Experiences</>}
-            subtitle="Meticulously designed itineraries combining culture, adventure, and pure luxury."
+            eyebrow={t('home.featuredTours.eyebrow')}
+            title={<>{t('home.featuredTours.titleL1')}<br />{t('home.featuredTours.titleL2')}</>}
+            subtitle={t('home.featuredTours.subtitle')}
           />
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -292,7 +307,7 @@ function ToursSection() {
               to="/tours"
               className="inline-flex items-center gap-2 text-sm text-secondary underline-anim font-medium shrink-0"
             >
-              All tours
+              {t('home.featuredTours.allLink')}
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </Link>
           </motion.div>
@@ -305,8 +320,8 @@ function ToursSection() {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {featured.map((t) => (
-            <TourCard key={t.id} tour={t} />
+          {localizedFeatured.map((tour) => (
+            <TourCard key={tour.id} tour={tour} />
           ))}
         </motion.div>
       </Container>
@@ -316,7 +331,13 @@ function ToursSection() {
 
 /* ─── Experiences ───────────────────────────────────────── */
 function ExperiencesSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const expTranslations = t('data.experiences', { returnObjects: true })
+  const localizedExperiences = experiences.map((exp) => ({
+    ...exp,
+    ...expTranslations[String(exp.id)],
+  }))
 
   return (
     <section className="py-20 lg:py-28 bg-dark relative overflow-hidden">
@@ -326,9 +347,9 @@ function ExperiencesSection() {
       />
       <Container className="relative z-10">
         <SectionHeading
-          eyebrow="How We Travel"
-          title="Ways to Experience Georgia"
-          subtitle="Every journey is tailored to your passions. Choose your adventure."
+          eyebrow={t('home.experiences.eyebrow')}
+          title={t('home.experiences.title')}
+          subtitle={t('home.experiences.subtitle')}
           centered
           className="mb-14"
         />
@@ -340,7 +361,7 @@ function ExperiencesSection() {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
         >
-          {experiences.map((exp) => (
+          {localizedExperiences.map((exp) => (
             <ExperienceCard key={exp.id} experience={exp} />
           ))}
         </motion.div>
@@ -351,13 +372,14 @@ function ExperiencesSection() {
 
 /* ─── Gallery ───────────────────────────────────────────── */
 function GallerySection() {
+  const { t } = useTranslation()
   return (
     <section className="py-20 lg:py-28 bg-dark-800">
       <Container>
         <SectionHeading
-          eyebrow="Visual Journey"
-          title="Georgia Through Our Lens"
-          subtitle="A glimpse into the extraordinary landscapes and moments awaiting you."
+          eyebrow={t('home.gallery.eyebrow')}
+          title={t('home.gallery.title')}
+          subtitle={t('home.gallery.subtitle')}
           centered
           className="mb-12"
         />
@@ -368,45 +390,45 @@ function GallerySection() {
 }
 
 /* ─── Testimonials ──────────────────────────────────────── */
-const testimonials = [
-  {
-    id: 1,
-    name: 'Sophie & James',
-    country: 'United Kingdom',
-    rating: 5,
-    text: 'Class Georgia transformed our honeymoon into the most magical week of our lives. The attention to detail, the private experiences, the sheer beauty of every location — absolutely flawless.',
-    avatar: 'https://picsum.photos/seed/avatar-1/80/80',
-    tour: 'Ultimate Georgia Discovery',
-  },
-  {
-    id: 2,
-    name: 'Marco Ferretti',
-    country: 'Italy',
-    rating: 5,
-    text: 'As a wine professional, the Kakheti experience exceeded every expectation. Tasting qvevri wines in 2,000-year-old cellars is something I cannot find anywhere else on Earth.',
-    avatar: 'https://picsum.photos/seed/avatar-2/80/80',
-    tour: 'Wine & Culture Journey',
-  },
-  {
-    id: 3,
-    name: 'Aiko Tanaka',
-    country: 'Japan',
-    rating: 5,
-    text: "The mountain trek was breathtaking in every sense. Our guide's knowledge of Svaneti history made every stone tower feel alive. Already planning my return.",
-    avatar: 'https://picsum.photos/seed/avatar-3/80/80',
-    tour: 'Caucasus Mountain Trek',
-  },
-]
-
 function TestimonialsSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Sophie & James',
+      country: 'United Kingdom',
+      rating: 5,
+      text: t('home.testimonials.items.1.text'),
+      avatar: 'https://picsum.photos/seed/avatar-1/80/80',
+      tour: t('data.tours.1.title'),
+    },
+    {
+      id: 2,
+      name: 'Marco Ferretti',
+      country: 'Italy',
+      rating: 5,
+      text: t('home.testimonials.items.2.text'),
+      avatar: 'https://picsum.photos/seed/avatar-2/80/80',
+      tour: t('data.tours.3.title'),
+    },
+    {
+      id: 3,
+      name: 'Aiko Tanaka',
+      country: 'Japan',
+      rating: 5,
+      text: t('home.testimonials.items.3.text'),
+      avatar: 'https://picsum.photos/seed/avatar-3/80/80',
+      tour: t('data.tours.2.title'),
+    },
+  ]
 
   return (
     <section className="py-20 lg:py-28 bg-dark">
       <Container>
         <SectionHeading
-          eyebrow="Traveller Stories"
-          title="What Our Guests Say"
+          eyebrow={t('home.testimonials.eyebrow')}
+          title={t('home.testimonials.title')}
           centered
           className="mb-14"
         />
@@ -446,6 +468,7 @@ function TestimonialsSection() {
 
 /* ─── CTA ───────────────────────────────────────────────── */
 function CTASection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
 
   return (
@@ -468,14 +491,14 @@ function CTASection() {
           className="max-w-2xl"
         >
           <motion.p variants={staggerItem} className="text-xs font-medium tracking-[0.2em] uppercase text-secondary/80 mb-3">
-            Your Journey Awaits
+            {t('home.cta.eyebrow')}
           </motion.p>
           <motion.h2 variants={staggerItem} className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Plan Your<br />
-            <em className="italic">Perfect</em> Trip
+            {t('home.cta.titleL1')}<br />
+            <em className="italic">{t('home.cta.titleItalic')}</em> {t('home.cta.titleSuffix')}
           </motion.h2>
           <motion.p variants={staggerItem} className="text-base text-white/60 leading-relaxed mb-10 max-w-md">
-            Let our travel experts craft a bespoke Georgian adventure tailored to your interests, pace, and budget.
+            {t('home.cta.description')}
           </motion.p>
           <motion.div variants={staggerItem} className="flex flex-wrap gap-4">
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
@@ -483,7 +506,7 @@ function CTASection() {
                 to="/contact"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-sm bg-secondary hover:bg-secondary-light text-dark font-semibold text-sm tracking-wide transition-all duration-200"
               >
-                Start Planning
+                {t('home.cta.startPlanning')}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
             </motion.div>
@@ -492,13 +515,13 @@ function CTASection() {
                 to="/tours"
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-sm border border-white/30 text-white hover:border-white/60 font-medium text-sm tracking-wide transition-all duration-200"
               >
-                Browse Tours
+                {t('home.cta.browseTours')}
               </Link>
             </motion.div>
           </motion.div>
 
           <motion.div variants={staggerItem} className="mt-10 flex flex-wrap gap-6">
-            {['Free Consultation', 'Custom Itineraries', 'Expert Local Guides', '24/7 Support'].map((f) => (
+            {[t('home.cta.freeConsultation'), t('home.cta.customItineraries'), t('home.cta.expertGuides'), t('home.cta.support')].map((f) => (
               <div key={f} className="flex items-center gap-2 text-sm text-white/55">
                 <span className="w-1 h-1 rounded-full bg-secondary" />
                 {f}
@@ -513,6 +536,7 @@ function CTASection() {
 
 /* ─── Booking Section ───────────────────────────────────── */
 function QuickBookingSection() {
+  const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
 
   return (
@@ -526,19 +550,19 @@ function QuickBookingSection() {
             variants={staggerContainer}
           >
             <motion.p variants={staggerItem} className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-3">
-              Book Your Tour
+              {t('home.quickBooking.eyebrow')}
             </motion.p>
             <motion.h2 variants={staggerItem} className="font-display text-4xl sm:text-5xl font-bold text-light leading-tight mb-5">
-              Ready to<br />Start Your Journey?
+              {t('home.quickBooking.titleL1')}<br />{t('home.quickBooking.titleL2')}
             </motion.h2>
             <motion.p variants={staggerItem} className="text-base text-light/50 leading-relaxed mb-8">
-              Fill in the form and our team will reach out within 24 hours to finalise your bespoke Georgian adventure.
+              {t('home.quickBooking.description')}
             </motion.p>
             <motion.div variants={staggerItem} className="space-y-4">
               {[
-                { icon: '📞', title: 'Dedicated Support', desc: '+995 32 200 0000 · Mon–Sun 9–21h' },
-                { icon: '✉️', title: 'Email Us', desc: 'info@classgeorgia.com' },
-                { icon: '📍', title: 'Visit Us', desc: '12 Rustaveli Ave, Tbilisi, Georgia' },
+                { icon: '📞', title: t('home.quickBooking.dedicatedSupport'), desc: t('home.quickBooking.phoneMeta') },
+                { icon: '✉️', title: t('home.quickBooking.emailUs'), desc: t('home.quickBooking.emailMeta') },
+                { icon: '📍', title: t('home.quickBooking.visitUs'), desc: t('home.quickBooking.addressMeta') },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="flex items-start gap-3">
                   <span className="text-xl shrink-0 mt-0.5">{icon}</span>

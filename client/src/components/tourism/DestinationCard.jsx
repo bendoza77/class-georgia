@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { staggerItem } from '../../animations/staggerVariants'
 import Badge from '../ui/Badge'
 
 export default function DestinationCard({ destination }) {
+  const { t } = useTranslation()
   const { name, region, tagline, description, image, highlights, duration, bestTime, rating } =
     destination
 
@@ -63,7 +65,7 @@ export default function DestinationCard({ destination }) {
           to="/destinations"
           className="mt-4 w-full inline-flex items-center justify-center gap-2 py-2.5 text-sm font-medium text-secondary border border-secondary/20 rounded-sm hover:bg-secondary/10 hover:border-secondary/40 transition-all duration-200"
         >
-          Explore {name}
+          {t('destinationCard.explorePrefix')} {name}
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </Link>
       </div>

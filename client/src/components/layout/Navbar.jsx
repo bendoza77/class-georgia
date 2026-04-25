@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import logo from '../../assets/Screenshot_2026-04-24_190625-removebg-preview.png'
 import { navLinks } from '../../constants/navLinks'
 import { ThemeContext } from '../../App'
 import MobileMenu from './MobileMenu'
 import Container from './Container'
+import LanguageSwitcher from '../shared/LanguageSwitcher'
 
 function SunIcon() {
   return (
@@ -32,6 +34,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const { isDark, setIsDark } = useContext(ThemeContext)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setMenuOpen(false)
@@ -77,7 +80,7 @@ export default function Navbar() {
                       : 'text-light/70 hover:text-light'
                   }`}
                 >
-                  {link.label}
+                  {t(`nav.${link.key}`)}
                   {location.pathname === link.path && (
                     <motion.span
                       layoutId="nav-indicator"
@@ -90,6 +93,8 @@ export default function Navbar() {
 
             {/* Right controls */}
             <div className="flex items-center gap-3">
+              <LanguageSwitcher className="hidden sm:flex" />
+
               <button
                 onClick={() => setIsDark(!isDark)}
                 aria-label="Toggle theme"
@@ -102,7 +107,7 @@ export default function Navbar() {
                 to="/contact"
                 className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 hover:border-secondary/30 transition-all duration-200 tracking-wide"
               >
-                Book Now
+                {t('nav.bookNow')}
               </Link>
 
               {/* Hamburger */}
@@ -120,7 +125,6 @@ export default function Navbar() {
         </Container>
       </header>
 
-      {/* Scroll progress bar */}
       <ScrollProgress />
 
       <AnimatePresence>
