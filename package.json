@@ -1,8 +1,0 @@
-{
-  "name": "class-georgia",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "groq-sdk": "^1.1.2"
-  }
-}
