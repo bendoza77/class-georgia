@@ -1,6 +1,31 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import Groq from 'groq-sdk'
+
+const groq = new Groq({
+  apiKey: import.meta.env.VITE_GROQ_API_KEY,
+  dangerouslyAllowBrowser: true,
+})
+
+const SYSTEM_PROMPT = `You are an expert AI travel consultant for Class Georgia — a luxury travel agency specialising in extraordinary, bespoke journeys through Georgia (the country in the South Caucasus).
+
+Your personality: warm, sophisticated, inspiring, knowledgeable. You speak like a passionate local who genuinely loves Georgia.
+
+You have expert knowledge of:
+- DESTINATIONS: Tbilisi (sulfur baths, Old Town, Narikala, art scene), Kazbegi (Gergeti Trinity Church, Mt Kazbek, Truso Valley), Batumi (Black Sea, Botanical Garden, belle-époque architecture), Kakheti wine country (8,000 years of winemaking, qvevri, Sighnaghi, Bodbe), Svaneti (UNESCO medieval towers, Ushguli, glaciers, Mestia), Mtskheta (spiritual capital, Svetitskhoveli Cathedral, Jvari Monastery)
+- TOURS: Signature 10-day "Ultimate Georgia Discovery", Caucasus Mountain Trek, Wine & Culture Journey, Tbilisi Deep Dive, Black Sea & Batumi Escape, Sacred Georgia Cultural Tour
+- PRACTICAL INFO: 95+ countries enter visa-free, best seasons (spring Apr–Jun and autumn Sep–Oct), Tbilisi time UTC+4, local currency GEL, safety (Georgia is very safe for tourists)
+- CULTURE: 3,000-year history, Georgian alphabet (one of world's oldest), polyphonic singing (UNESCO), supra feasting tradition, Orthodox Christian heritage
+- CUISINE: khinkali (dumplings), khachapuri (cheese bread), churchkhela, mtsvadi, chakapuli, regional specialities
+- WINE: world's oldest wine culture, natural amber qvevri wines, Rkatsiteli and Saperavi grapes, Kakheti, Kartli, Imereti regions
+
+Guidelines:
+- Keep responses concise and evocative — 2 to 5 sentences. Use poetic, inspiring language that makes Georgia come alive.
+- For specific pricing or booking enquiries, invite them to contact the Class Georgia team directly.
+- Only answer questions related to Georgia travel, tourism, culture, cuisine, and practical visitor information.
+- If asked something unrelated to Georgia or travel, politely redirect: "I'm specialised in Georgian travel — let me help you discover this extraordinary country instead."
+- Never make up specific prices, tour availability, or personal details.`
 
 /* ─── Icons ─────────────────────────────────────────────────────── */
 function SparkleIcon({ size = 18 }) {
@@ -105,48 +130,36 @@ export default function AIChat() {
     setShowSuggested(false)
 
     try {
-      const apiBase = import.meta.env.VITE_API_URL || ''
-      const res = await fetch(`${apiBase}/api/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+      const stream = await groq.chat.completions.create({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...history
+            .filter(m => m.role === 'user' || m.role === 'assistant')
+            .map(m => ({ role: m.role, content: String(m.content).slice(0, 800) }))
+            .slice(-20),
+        ],
+        max_tokens: 400,
+        temperature: 0.72,
+        stream: true,
       })
-      if (!res.ok) throw new Error('API error')
 
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-      let buffer = ''
       let started = false
+      for await (const chunk of stream) {
+        const content = chunk.choices[0]?.delta?.content || ''
+        if (!content) continue
 
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-
-        buffer += decoder.decode(value, { stream: true })
-        const lines = buffer.split('\n')
-        buffer = lines.pop() || ''
-
-        for (const line of lines) {
-          if (!line.startsWith('data: ')) continue
-          const raw = line.slice(6).trim()
-          if (raw === '[DONE]') continue
-          let parsed
-          try { parsed = JSON.parse(raw) } catch { continue }
-          if (parsed.error) throw new Error(parsed.error)
-          if (!parsed.content) continue
-
-          if (!started) {
-            setIsLoading(false)
-            setMessages(prev => [...prev, { role: 'assistant', content: parsed.content, streaming: true }])
-            started = true
-          } else {
-            setMessages(prev => {
-              const next = [...prev]
-              const last = next[next.length - 1]
-              next[next.length - 1] = { ...last, content: last.content + parsed.content }
-              return next
-            })
-          }
+        if (!started) {
+          setIsLoading(false)
+          setMessages(prev => [...prev, { role: 'assistant', content, streaming: true }])
+          started = true
+        } else {
+          setMessages(prev => {
+            const next = [...prev]
+            const last = next[next.length - 1]
+            next[next.length - 1] = { ...last, content: last.content + content }
+            return next
+          })
         }
       }
 
