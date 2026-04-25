@@ -6,7 +6,7 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import Container from '../../components/layout/Container'
 import SectionHeading from '../../components/shared/SectionHeading'
 import DestinationCard from '../../components/tourism/DestinationCard'
-import { destinations } from '../../constants/destinationsData'
+import { useSiteData } from '../../context/SiteDataContext'
 import { staggerContainer } from '../../animations/staggerVariants'
 import { pageTransitionProps } from '../../animations/pageTransition'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
@@ -16,6 +16,7 @@ const regionKeys = ['All', 'Capital City', 'Greater Caucasus', 'Adjara', 'Wine C
 export default function Destinations() {
   const { t } = useTranslation()
   useDocumentTitle('Destinations')
+  const { destinations } = useSiteData()
   const [activeRegion, setActiveRegion] = useState('All')
   const { ref, isInView } = useScrollAnimation()
 

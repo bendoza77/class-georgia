@@ -5,7 +5,7 @@ import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 import Container from '../../components/layout/Container'
 import TourCard from '../../components/tourism/TourCard'
 import BookingWidget from '../../components/tourism/BookingWidget'
-import { tours } from '../../constants/toursData'
+import { useSiteData } from '../../context/SiteDataContext'
 import { staggerContainer } from '../../animations/staggerVariants'
 import { pageTransitionProps } from '../../animations/pageTransition'
 
@@ -15,6 +15,7 @@ const difficultyKeys = ['Any', 'Easy', 'Moderate', 'Challenging']
 export default function Tours() {
   const { t } = useTranslation()
   useDocumentTitle('Tours')
+  const { tours } = useSiteData()
   const [category, setCategory] = useState('All')
   const [difficulty, setDifficulty] = useState('Any')
   const [showBooking, setShowBooking] = useState(false)

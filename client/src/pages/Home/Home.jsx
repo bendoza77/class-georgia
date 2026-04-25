@@ -10,20 +10,20 @@ import TourCard from '../../components/tourism/TourCard'
 import ExperienceCard from '../../components/tourism/ExperienceCard'
 import Gallery from '../../components/tourism/Gallery'
 import BookingWidget from '../../components/tourism/BookingWidget'
-import { destinations } from '../../constants/destinationsData'
-import { tours, experiences } from '../../constants/toursData'
+import { useSiteData } from '../../context/SiteDataContext'
 import { staggerContainer, staggerItem, counterVariant } from '../../animations/staggerVariants'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 import { pageTransitionProps } from '../../animations/pageTransition'
 
 /* ─── Hero ─────────────────────────────────────────────── */
-const heroImages = [
+const defaultHeroImages = [
   'https://picsum.photos/seed/hero-georgia-1/1920/1080',
   'https://picsum.photos/seed/hero-georgia-2/1920/1080',
   'https://picsum.photos/seed/hero-georgia-3/1920/1080',
 ]
 
 function HeroSection() {
+  const { heroImages = defaultHeroImages } = useSiteData() || {}
   const { t } = useTranslation()
   const heroRef = useRef(null)
   const { scrollY } = useScroll()
@@ -227,6 +227,7 @@ function StatsSection() {
 function DestinationsSection() {
   const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const { destinations } = useSiteData()
   const featured = destinations.filter((d) => d.featured)
 
   const destTranslations = t('data.destinations', { returnObjects: true })
@@ -280,6 +281,7 @@ function DestinationsSection() {
 function ToursSection() {
   const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const { tours } = useSiteData()
   const featured = tours.filter((t) => t.featured)
 
   const tourTranslations = t('data.tours', { returnObjects: true })
@@ -333,6 +335,7 @@ function ToursSection() {
 function ExperiencesSection() {
   const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
+  const { experiences } = useSiteData()
   const expTranslations = t('data.experiences', { returnObjects: true })
   const localizedExperiences = experiences.map((exp) => ({
     ...exp,
@@ -393,35 +396,7 @@ function GallerySection() {
 function TestimonialsSection() {
   const { t } = useTranslation()
   const { ref, isInView } = useScrollAnimation()
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Sophie & James',
-      country: 'United Kingdom',
-      rating: 5,
-      text: t('home.testimonials.items.1.text'),
-      avatar: 'https://picsum.photos/seed/avatar-1/80/80',
-      tour: t('data.tours.1.title'),
-    },
-    {
-      id: 2,
-      name: 'Marco Ferretti',
-      country: 'Italy',
-      rating: 5,
-      text: t('home.testimonials.items.2.text'),
-      avatar: 'https://picsum.photos/seed/avatar-2/80/80',
-      tour: t('data.tours.3.title'),
-    },
-    {
-      id: 3,
-      name: 'Aiko Tanaka',
-      country: 'Japan',
-      rating: 5,
-      text: t('home.testimonials.items.3.text'),
-      avatar: 'https://picsum.photos/seed/avatar-3/80/80',
-      tour: t('data.tours.2.title'),
-    },
-  ]
+  const { testimonials } = useSiteData()
 
   return (
     <section className="py-20 lg:py-28 bg-dark">
