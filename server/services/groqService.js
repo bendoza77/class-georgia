@@ -21,20 +21,19 @@ Guidelines:
 - If asked something unrelated to Georgia or travel, politely redirect: "I'm specialised in Georgian travel — let me help you discover this extraordinary country instead."
 - Never make up specific prices, tour availability, or personal details.`
 
-async function getGroqResponse(messages) {
+async function getGroqStream(messages) {
   const sanitised = messages
     .filter(m => m.role === 'user' || m.role === 'assistant')
     .map(m => ({ role: m.role, content: String(m.content).slice(0, 800) }))
     .slice(-20)
 
-  const completion = await groq.chat.completions.create({
+  return groq.chat.completions.create({
     model: 'llama-3.3-70b-versatile',
     messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...sanitised],
     max_tokens: 400,
     temperature: 0.72,
+    stream: true,
   })
-
-  return completion.choices[0]?.message?.content?.trim() || 'I apologise — I was unable to generate a response. Please try again.'
 }
 
-module.exports = { getGroqResponse }
+module.exports = { getGroqStream }

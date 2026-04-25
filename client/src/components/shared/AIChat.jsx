@@ -112,13 +112,53 @@ export default function AIChat() {
         body: JSON.stringify({ messages: history }),
       })
       if (!res.ok) throw new Error('API error')
-      const data = await res.json()
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }])
+
+      const reader = res.body.getReader()
+      const decoder = new TextDecoder()
+      let buffer = ''
+      let started = false
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+
+        buffer += decoder.decode(value, { stream: true })
+        const lines = buffer.split('\n')
+        buffer = lines.pop() || ''
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue
+          const raw = line.slice(6).trim()
+          if (raw === '[DONE]') continue
+          let parsed
+          try { parsed = JSON.parse(raw) } catch { continue }
+          if (parsed.error) throw new Error(parsed.error)
+          if (!parsed.content) continue
+
+          if (!started) {
+            setIsLoading(false)
+            setMessages(prev => [...prev, { role: 'assistant', content: parsed.content, streaming: true }])
+            started = true
+          } else {
+            setMessages(prev => {
+              const next = [...prev]
+              const last = next[next.length - 1]
+              next[next.length - 1] = { ...last, content: last.content + parsed.content }
+              return next
+            })
+          }
+        }
+      }
+
+      setMessages(prev => {
+        const next = [...prev]
+        const last = next[next.length - 1]
+        if (last?.streaming) next[next.length - 1] = { ...last, streaming: false }
+        return next
+      })
     } catch {
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: t('ai.error'), isError: true },
-      ])
+      setIsLoading(false)
+      setMessages(prev => [...prev, { role: 'assistant', content: t('ai.error'), isError: true }])
     } finally {
       setIsLoading(false)
       setTimeout(() => textareaRef.current?.focus(), 100)
@@ -136,7 +176,8 @@ export default function AIChat() {
     sendMessage(prompt)
   }
 
-  const canSend = input.trim().length > 0 && !isLoading
+  const isStreaming = messages.some(m => m.streaming)
+  const canSend = input.trim().length > 0 && !isLoading && !isStreaming
 
   return (
     <div className="fixed bottom-20 right-6 z-50 flex flex-col items-end gap-3" ref={inputRef}>
@@ -265,6 +306,13 @@ export default function AIChat() {
                     }}
                   >
                     {msg.content}
+                    {msg.streaming && (
+                      <motion.span
+                        animate={{ opacity: [1, 0, 1] }}
+                        transition={{ duration: 0.8, repeat: Infinity, ease: 'steps(1)' }}
+                        className="inline-block w-px h-3.5 bg-secondary/70 ml-0.5 align-middle"
+                      />
+                    )}
                   </div>
                 </motion.div>
               ))}
