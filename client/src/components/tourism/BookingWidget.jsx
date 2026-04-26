@@ -29,15 +29,30 @@ export default function BookingWidget({ inline = false }) {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/send-booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Failed to send')
+      }
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message || t('booking.errorMessage'))
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (submitted) {
@@ -54,7 +69,7 @@ export default function BookingWidget({ inline = false }) {
         <h3 className="font-display text-2xl font-bold text-light">{t('booking.successTitle')}</h3>
         <p className="text-light/50 max-w-xs">{t('booking.successDesc')}</p>
         <button
-          onClick={() => setSubmitted(false)}
+          onClick={() => { setSubmitted(false); setError(null) }}
           className="mt-2 text-sm text-secondary underline-anim"
         >
           {t('booking.anotherEnquiry')}
@@ -129,6 +144,10 @@ export default function BookingWidget({ inline = false }) {
           className="w-full bg-dark-700 border border-white/10 rounded-sm px-4 py-3 text-sm text-light placeholder:text-light/30 focus:outline-none focus:border-secondary/60 transition-colors resize-none"
         />
       </div>
+
+      {error && (
+        <p className="text-sm text-red-400/80 text-center py-1">{error}</p>
+      )}
 
       <Button type="submit" fullWidth size="lg" loading={loading}>
         {loading ? t('booking.sending') : t('booking.requestBooking')}

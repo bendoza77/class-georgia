@@ -26,11 +26,29 @@ function SocialIcon({ href, children }) {
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const [subLoading, setSubLoading] = useState(false)
+  const [subError, setSubError] = useState(null)
   const { t } = useTranslation()
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault()
-    if (email) { setSubscribed(true); setEmail('') }
+    if (!email) return
+    setSubLoading(true)
+    setSubError(null)
+    try {
+      const res = await fetch('/api/send-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setSubscribed(true)
+      setEmail('')
+    } catch {
+      setSubError('Something went wrong. Please try again.')
+    } finally {
+      setSubLoading(false)
+    }
   }
 
   return (
@@ -100,7 +118,11 @@ export default function Footer() {
             </h4>
             <p className="text-sm text-light/40 leading-relaxed mb-5">{t('footer.newsletterSubtitle')}</p>
             {subscribed ? (
-              <p className="text-sm text-secondary font-medium">{t('footer.subscribed')}</p>
+              <div className="border border-secondary/30 bg-secondary/10 rounded-sm px-4 py-4 text-center">
+                <p className="text-lg mb-1">✓</p>
+                <p className="text-sm text-secondary font-medium">{t('footer.subscribed')}</p>
+                <p className="text-xs text-light/40 mt-1">Check your inbox for a welcome email.</p>
+              </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
                 <input
@@ -108,13 +130,18 @@ export default function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('footer.emailPlaceholder')}
+                  required
                   className="w-full bg-dark-700 border border-white/10 rounded-sm px-4 py-2.5 text-sm text-light placeholder:text-light/30 focus:outline-none focus:border-secondary/50 transition-colors"
                 />
+                {subError && (
+                  <p className="text-xs text-red-400 bg-red-400/10 border border-red-400/20 rounded-sm px-3 py-2">{subError}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full py-2.5 px-4 text-sm font-medium tracking-wide rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 transition-all duration-200"
+                  disabled={subLoading}
+                  className="w-full py-2.5 px-4 text-sm font-medium tracking-wide rounded-sm bg-primary hover:bg-primary-light text-secondary border border-primary/60 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t('footer.subscribe')}
+                  {subLoading ? '...' : t('footer.subscribe')}
                 </button>
               </form>
             )}

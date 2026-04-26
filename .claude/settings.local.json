@@ -9,7 +9,11 @@
       "Bash(git rm *)",
       "Bash(git commit *)",
       "Bash(git push *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(curl -s -X POST http://localhost:3000/api/send-booking -H 'Content-Type: application/json' -d '{\"name\":\"Test\",\"email\":\"test@test.com\",\"tour\":\"Tbilisi Deep Dive\",\"date\":\"2026-05-01\",\"guests\":\"2\"}')",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(curl -s -X POST http://localhost:3000/api/send-newsletter -H 'Content-Type: application/json' -d '{\"email\":\"gabrieljobava123@gmail.com\"}')",
+      "Bash(curl -s -X POST http://localhost:3000/api/send-booking -H 'Content-Type: application/json' -d '{\"name\":\"Test User\",\"email\":\"random@otheremail.com\",\"tour\":\"Wine & Culture Journey\",\"date\":\"2026-06-01\",\"guests\":\"2\",\"phone\":\"+995599000000\"}')"
     ]
   }
 }
